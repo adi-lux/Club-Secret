@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    p Sign up
+    form(method='POST' action='/sign-up')
+        label(for='first-name') First Name
+        input(placeholder='bob' name='first' id='first-name')
+        label(for='last-name') Last Name
+        input(placeholder='jones' name='last' id='last-name')
+        label(for='email') E-mail
+        input(placeholder='bob.jones@gmail.com' name='email' id='email' type='email')
+        label(for='user-name') Username
+        input(placeholder='bobjones3' name='username' id='user-name')
+        label(for='password') Password
+        input( name='password' id='password')
+        input(type='submit' value='Register')
