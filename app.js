@@ -10,7 +10,6 @@ const bcrypt = require('bcryptjs')
 const logger = require('morgan');
 const User = require('./models/user');
 const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
 
 const mongoose = require('mongoose')
 const mongo = process.env.MONGO_URI
@@ -33,7 +32,7 @@ passport.deserializeUser(function (id, done) {
 
 passport.use(
     new LocalStrategy((username, password, done) => {
-        User.findOne({username: username}, (err, user) => {
+        User.findOne({userName: username}, (err, user) => {
             if (err) {
                 return done(err);
             }
@@ -70,7 +69,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -11,5 +11,4 @@ block content
             input(placeholder='bobjones3' name='username' id='user-name' required=true minlength=6 maxlength=15)
             label(for='password') Password
             input( name='password'  type='password' minlength=8 oninvalid="this.setCustomValidity('A password needs a length of at least 8.')" oninput="this.setCustomValidity('')" id='password' required=true )
-            input(type='submit' value='Register')
-        a(href='/') Home
+            input(class='submit' type='submit' value='Register')

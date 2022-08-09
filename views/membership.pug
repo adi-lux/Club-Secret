@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    p Sign in
+    form(method='POST' action='/membership')
+        label(for='passcode') Passcode
+        input(name='passcode' id='passcode' type='password')
+        input(type='submit' value='Apply')
+    br
+    a(href='/') Home

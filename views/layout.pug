@@ -4,4 +4,12 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
+    block header
+      header
+        h1
+          i Club Secret
+        nav
+          a(href='/') Home
+          a(href='/sign-in') Sign in
+          a(href='/sign-up') Sign up!
     block content

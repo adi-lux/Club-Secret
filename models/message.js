@@ -9,6 +9,6 @@ const MessageSchema = new Schema({
 })
 
 MessageSchema.virtual('url')
-          .get(function () {return `messages/${this.id}`})
+          .get(function () {return `/messages/${this.id}`})
 
 module.exports = mongoose.model('Message', MessageSchema)

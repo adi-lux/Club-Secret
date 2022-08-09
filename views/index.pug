@@ -1,12 +1,52 @@
 extends layout
 
+block header
+  header
+    h1
+      i Club Secret
+    if user
+      nav
+        a(href='/') Home
+        if !user.membership
+          a(href='/membership') Membership
+        a(href='/sign-out') Sign Out!
+    else
+      nav
+        a(href='/') Home
+        a(href='/sign-in') Sign in
+        a(href='/sign-up') Sign up!
+
 block content
-  h1= title
-  p Welcome to #{title}
   if user
-    p Welcome #{user.firstName} #{user.lastName}, You are logged on.
-    a(href='sign-out') Sign out...
-  else
-    a(href='/sign-in') Sign in here!
+    a(href='/messages')
+      button Post something!
+
+    if !user.membership && !user.admin
+      p Welcome #{user.firstName} #{user.lastName}, You are logged on.
+      section(class='message-board')
+        div(class='message')
+        each message in messageList
+            b= message.title
+            p= message.content
+    else
+      p Welcome, member #{user.firstName} #{user.lastName}, you are logged on.
+      section(class='message-board')
+        each message in messageList
+          div(class='message')
+            b= message.title
+            p= message.content
+            p= message.creator.userName
+            i= message.timestamp
+            if message.creator.userName === user.userName
+              a(href=message.url) Edit
+            if message.creator.userName === user.userName || user.admin
+              form(action=`delete${message.url}` method='POST')
+                  input(type='submit' value='delete')
     br
-    a(href='/sign-up') Sign up here!
+  else
+    p Sign up now!!
+    section(class='message-board')
+      each message in messageList
+        div(class='message')
+          b= message.title
+          p= message.content

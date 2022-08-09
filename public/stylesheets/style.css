@@ -3,6 +3,26 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  width: clamp(200px, 12%, 30%);
+}
+
+.submit {
+  grid-column: 1 / span 2;
+}
 a {
   color: #00B7FF;
+}
+
+form {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  margin: 0 20vw;
 }
