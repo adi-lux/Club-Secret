@@ -31,20 +31,6 @@ passport.deserializeUser(function (id, done) {
         .catch(err => done(err))
 });
 
-
-// console.log('beginning')
-// User.findOne().or([{name: identifier}, {email: identifier}])
-//     .then((user) => {
-//         if (!user) { return done(null, false, {message: 'Incorrect identifier'})}
-//         return bcrypt.compare(password, user.password)
-//     })
-//     .then((res) => {
-//         if (!res) {
-//             return done(null, false, {message: "Incorrect password"})
-//         }
-//         return done(null, identifier)
-//     })
-//     .catch((err) => {return done(err)})
 passport.use(
     new LocalStrategy((username, password, done) => {
         User.findOne({username: username}, (err, user) => {
@@ -60,8 +46,9 @@ passport.use(
             bcrypt.compare(password, user.password, (err, res) => {
                 if (res) {
                     console.log('correct pass')
-                    return done(null, user) }
-                return done(null,false, {message: 'Incorrect password'})
+                    return done(null, user)
+                }
+                return done(null, false, {message: 'Incorrect password'})
             })
         });
     })
@@ -73,6 +60,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger('dev'));
 app.use(express.json());
+
+app.use((req, res, next) => {
+    res.locals.curUser = req.user;
+    next();
+})
+
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -85,7 +78,7 @@ app.use(function (req, res, next) {
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};

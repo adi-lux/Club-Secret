@@ -1,43 +1,52 @@
-const Message = require('../models/message')
 const User = require('../models/user')
 const {body, validationResult} = require('express-validator')
 const bcrypt = require('bcryptjs')
 
-const getHomePage = async (req, res, next) => {
-    res.render('index', {title: 'Express'})
+const getHomePage = (req, res) => {
+    res.render('index', {title: 'Express', user: req.user})
 }
 
-const getSignInForm = async (req, res, next) => {
+const getSignInForm = (req, res) => {
     res.render('sign_in', {title: 'Sign In Form'})
 }
 
-const getSignUpForm = async (req, res, next) => {
+const getSignUpForm = (req, res) => {
     res.render('sign_up', {title: 'Sign Up Form'})
 }
 
-const postSignUpForm = async (req, res, next) => {
-    try {
-        const hashedPass = await bcrypt.hash(req.body.password, 10)
-        await new User({
-            username: req.body.username,
-            password: hashedPass,
-            firstName: req.body.first,
-            lastName: req.body.last,
-            email: req.body.email,
-            membership: false,
-            creationDate: new Date()
-        }).save()
 
-        res.render('sign_in')
-    } catch (e) {return next(e)}
+const postSignUpForm = [
+    body('username').trim().isLength({
+        min: 6,
+        max: 15
+    }).escape().withMessage('Usernames have to be longer than 6 characters and shorter than 15!'),
+    body('password').trim().isLength({min: 8}).withMessage('A password needs a length of at least 8.'),
+    body('first').trim().escape().isLength({min: 1}).withMessage('Please enter a first name'),
+    body('last').trim().escape().isLength({min: 1}).withMessage('Please enter a last name.'),
+    async (req, res, next) => {
+        try {
+            const result = validationResult(req)
+            if (!result.isEmpty()) { res.redirect('/sign-up')}
+            const existing = await User.findOne({userName: req.body.username})
+            if (existing) { return next()}
+            const hashedPass = await bcrypt.hash(req.body.password, 10)
+            await new User({
+                userName: req.body.username,
+                password: hashedPass,
+                firstName: req.body.first,
+                lastName: req.body.last,
+                membership: false,
+                admin: false,
+                creationDate: new Date()
+            }).save()
+            res.redirect('/sign-in')
+        } catch (e) {return next(e)}
+    }]
+
+const getSignOut = (req, res) => {
+    req.logout(
+        () => {res.redirect('/')})
 }
 
-const getSignOut = async (req, res, next) => {
-    try {
-        await req.logout()
-        res.redirect('/')
-    } catch (e) { return next(e)}
-}
 
-
-module.exports = {getSignOut, getHomePage, getSignInForm, getSignUpForm , postSignUpForm}
+module.exports = {getSignOut, getHomePage, getSignInForm, getSignUpForm, postSignUpForm}

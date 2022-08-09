@@ -3,6 +3,10 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href='/sign-in') Sign in here!
-  br
-  a(href='/sign-up') Sign up here!
+  if user
+    p Welcome #{user.firstName} #{user.lastName}, You are logged on.
+    a(href='sign-out') Sign out...
+  else
+    a(href='/sign-in') Sign in here!
+    br
+    a(href='/sign-up') Sign up here!

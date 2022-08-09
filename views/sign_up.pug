@@ -2,15 +2,14 @@ extends layout
 
 block content
     p Sign up
-    form(method='POST' action='/sign-up')
-        label(for='first-name') First Name
-        input(placeholder='bob' name='first' id='first-name')
-        label(for='last-name') Last Name
-        input(placeholder='jones' name='last' id='last-name')
-        label(for='email') E-mail
-        input(placeholder='bob.jones@gmail.com' name='email' id='email' type='email')
-        label(for='user-name') Username
-        input(placeholder='bobjones3' name='username' id='user-name')
-        label(for='password') Password
-        input( name='password' id='password')
-        input(type='submit' value='Register')
+        form(method='POST' autocomplete='new-password' action='/sign-up')
+            label(for='first-name') First Name
+            input(placeholder='bob' name='first' required=true id='first-name' minlength=1)
+            label(for='last-name') Last Name
+            input(placeholder='jones' name='last' required=true id='last-name' minlength=1)
+            label(for='user-name') Username
+            input(placeholder='bobjones3' name='username' id='user-name' required=true minlength=6 maxlength=15)
+            label(for='password') Password
+            input( name='password'  type='password' minlength=8 oninvalid="this.setCustomValidity('A password needs a length of at least 8.')" oninput="this.setCustomValidity('')" id='password' required=true )
+            input(type='submit' value='Register')
+        a(href='/') Home

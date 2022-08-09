@@ -4,10 +4,10 @@ const Schema = mongoose.Schema
 const UserSchema = new Schema({
     firstName: String,
     lastName: String,
-    email: String,
     userName: String,
     password: String,
     membership: Boolean,
+    admin: Boolean,
     creationDate: Date
 })
 

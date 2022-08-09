@@ -1,10 +1,12 @@
 extends layout
 
 block content
-    p Sign up
-    form(method='POST' action='/sign-in')
+    p Sign in
+    form(method='POST' autocomplete='current-password'  action='/sign-in')
         label(for='username') E-mail / Username
         input(placeholder='bob.jones@gmail.com' name='username' id='username')
         label(for='password') Password
         input(placeholder='bobjones3' name='password' id='password' type='password')
         input(type='submit' value='Sign in')
+    br
+    a(href='/') Home
