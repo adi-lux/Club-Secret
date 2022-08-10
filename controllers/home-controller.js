@@ -27,7 +27,7 @@ const getMembershipForm = (req, res) => {
 const postMembershipForm = async (req, res, next) => {
     try {
         if (req.body.passcode === process.env.CODE) {
-             await User.findByIdAndUpdate(req.user.id, {membership: true})
+            await User.findByIdAndUpdate(req.user.id, {membership: true})
             res.redirect('/')
         } else {
             res.redirect('/membership')
@@ -98,8 +98,8 @@ const getUpdateMessageForm = async (req, res, next) => {
 }
 
 const postUpdateMessageForm = [
-    body('title').trim().escape(),
-    body('content').trim().escape(),
+    body('title').trim(),
+    body('content').trim(),
     async (req, res, next) => {
         try {
             await Message.findByIdAndUpdate(req.params.id,
@@ -114,7 +114,7 @@ const postUpdateMessageForm = [
 const deleteMessage = async (req, res, next) => {
     try {
         const message = await Message.findById(req.params.id).populate('creator').exec()
-        await console.log(req.user.id,message.creator.id,  message.title, message.content, 'deleted')
+        await console.log(req.user.id, message.creator.id, message.title, message.content, 'deleted')
         if (req.user.id !== message.creator.id && !req.user.admin) { return res.redirect('/') }
         await Message.findByIdAndDelete(req.params.id)
         res.redirect('/')
@@ -128,13 +128,14 @@ const postSignInForm = (req, res, next) => {
     })
 }
 
-const getAdmin =async (req, res, next) => {
-    await User.findByIdAndUpdate(req.user.id, {admin: true})
+const getAdmin = async (req, res, next) => {
+    if (!req.user) {return res.redirect('/')}
+    await User.findByIdAndUpdate(req.user.id, {admin: !req.user.admin})
     res.redirect('/')
 }
 
 const errorPage = (req, res, next) => res.render('404', {title: '404'})
-const randomPage = (req,res,next) => res.redirect('404')
+const randomPage = (req, res, next) => res.redirect('404')
 module.exports = {
     postSignInForm,
     getMessagesForm,

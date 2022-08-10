@@ -1,14 +1,26 @@
 extends layout
 
+
+block header
+    header
+        a(href='/')
+            h1
+                i Club Secret
+        nav
+            a(href='/') Home
+            a(href='/sign-in') Sign in
+            a(href='/sign-up' class='current') Sign up!
+
 block content
-    p Sign up
-        form(method='POST' autocomplete='new-password' action='/sign-up')
-            label(for='first-name') First Name
+    div(class='sign-up')
+        p Sign up
+        form(class='sign-up-form' method='POST' autocomplete='new-password' action='/sign-up')
+            label(class='sign-up-name' for='first-name') First Name
             input(placeholder='bob' name='first' required=true id='first-name' minlength=1)
-            label(for='last-name') Last Name
+            label(class='sign-up-last' for='last-name') Last Name
             input(placeholder='jones' name='last' required=true id='last-name' minlength=1)
-            label(for='user-name') Username
+            label(class='sign-up-user' for='user-name') Username
             input(placeholder='bobjones3' name='username' id='user-name' required=true minlength=6 maxlength=15)
-            label(for='password') Password
+            label(class='sign-up-pass' for='password') Password
             input( name='password'  type='password' minlength=8 oninvalid="this.setCustomValidity('A password needs a length of at least 8.')" oninput="this.setCustomValidity('')" id='password' required=true )
-            input(class='submit' type='submit' value='Register')
+            input(class='sign-up-button submit' type='submit' value='Register')

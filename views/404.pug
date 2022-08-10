@@ -1,2 +1,7 @@
-p= 'You silly billy! Look what you have gotten yourself into!'
-    a(href='/')  Go back home you fool...
+extends layout
+
+block content
+    div(class='warning')
+        p= 'You silly billy! Look what you have gotten yourself into!'
+        a(href='/')  Go back home you fool...
+        img(src='/images/anger.svg' alt='angry face')

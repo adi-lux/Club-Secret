@@ -1,28 +1,256 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/*Colors:
+#0E1116 : Rich Black
+#F4F3EE : Isabelline
+#A31621 : Ruby red
+#9E7B9B : Dark pink
+#CB9CF2 : Lilac
+*/
+* {
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: rgba(14, 17, 22, 0.9);
+    display: grid;
+}
+
+a {
+    text-decoration: none;
+    font-weight: bolder;
+    color: #F4F3EE;
+}
+
+nav a {
+    color: rgba(244, 243, 238, 0.5);
+    font-size: clamp(10px, calc(1rem + 2px), 3rem)
+}
+
+nav a:hover {
+    color: rgba(244, 243, 238, 1);
+}
+
+.current {
+    color: rgba(244, 243, 238, 1);
 }
 
 header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    padding: 0 40px;
+    color: #F4F3EE;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgba(14, 17, 22, 1);
+    box-shadow: 0 0 2px #ddb3ff;
 }
+
 nav {
-  display: flex;
-  justify-content: space-between;
-  width: clamp(200px, 12%, 30%);
+    display: flex;
+    justify-content: space-between;
+    width: clamp(300px, 12%, 30%);
 }
 
 .submit {
-  grid-column: 1 / span 2;
-}
-a {
-  color: #00B7FF;
+    grid-column: 1 / span 2;
 }
 
-form {
-  display: grid;
-  grid-template-columns: 90px 1fr;
-  margin: 0 20vw;
+.post-button {
+    background-color: rgba(175, 35, 253, 0.49);
+    display: grid; align-items: center;
+    width: fit-content;
+    margin: 20px;
+    border-radius: 5px;
+
+    justify-self: center;
+}
+
+.intro-text {
+    color: #F4F3EE;
+    margin: 50px 50px 0;
+    text-align: start;
+    font-size: x-large;
+    font-weight: bolder;
+    font-family: "Script MT Bold ", "Segoe Script", serif;
+}
+.post-button button {
+    background-color: #e5b7ff;
+    font-weight: bolder;
+
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.post-button button:hover,.post-button button:active {
+    background-color: rgb(195, 112, 252);
+    font-weight: bolder;
+}
+
+.post-button button:active {
+    box-shadow: 0 0 4px #CB9CF2;
+}
+
+.message-board {
+    background-color: rgba(203, 156, 242, 0.97);
+    margin: 5px 50px 50px 50px;
+    border-radius: 10px;
+    padding: 20px;
+    display: grid;
+    gap: 20px;
+}
+
+.message {
+    padding: 10px 20px;
+    background-color: #F4F3EE;
+    color: rgb(46, 50, 59);
+    box-shadow: 0 0 5px #CB9CF2;
+    border-radius: 8px;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 150px;
+    column-gap: 10px;
+}
+
+.message-title {
+    font-size: calc(1rem + 5px);
+    grid-column: 1/3;
+    grid-row: 1/2;
+    place-self: start start;
+
+}
+
+.message-content {
+    grid-area: 2 /1/3/4;
+}
+
+.message-poster {
+    grid-area: 3 / 1 / 4 / 2;
+    font-size: calc(0.5rem + 3px);
+    justify-self: start;
+    align-self: end;
+    margin: 0;
+    font-style: oblique;
+    font-weight: 600;
+}
+
+.message i {
+    grid-area: 1/3/2/4;
+    font-size: calc(0.5rem + 3px);
+    place-self: start end;
+}
+
+.message-buttons {
+    grid-area: 3 / 3/ 4 /4;
+    display: flex;
+    place-self: end;
+    width: fit-content;
+    gap: 10px;
+
+}
+
+.message-buttons form {
+    width: fit-content;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.message-edit {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: none;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url("/images/pencil.svg");
+    background-size: cover;
+}
+
+.message-delete {
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-image: url("/images/delete.svg");
+    background-size: cover;
+}
+
+
+.sign-in-form, .sign-in-statement, .sign-up-form, .sign-up p {
+    color: #F4F3EE;
+    margin: 50px;
+    background-color: #501e81;
+}
+.sign-in-statement, .sign-up p {
+    font-size: x-large;
+    font-weight: bolder;
+    max-width: 600px;
+    font-family: "Script MT Bold ", "Segoe Script", serif;
+    margin-bottom: 0;
+    padding: 20px 20px 0;
+    text-align: center;
+
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.sign-in, .sign-up {
+    display: grid;
+    width: 100vw;
+    justify-content: center;
+}
+.sign-in-form, .sign-up-form {
+    padding: 0 20px 20px;
+    margin-top: 0;
+    display: grid;
+    grid-template-columns: fit-content(150px);
+    text-align: center;
+    align-items: center;
+    max-width: 600px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    gap: 10px;
+    align-self: center;
+    place-self: center;
+}
+
+
+.sign-in-button, .sign-up-button {
+    border: none;
+    background-color: #F4F3EE;
+    border-radius: 50px;
+    align-self: center;
+}
+.sign-in-button:hover, .sign-up-button:hover {
+    background-color: gainsboro;
+}
+
+.sign-in-button:active, .sign-up-button:active {
+    box-shadow: 0 0 2px mediumpurple;
+}
+
+.warning {
+    color: #F4F3EE;
+    font-size: xxx-large;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+}
+
+.warning a {
+    display: block;
+    place-self: center;
+    text-align: center;
+    color: #fdd5d5;
+    font-size: xxx-large;
+
+}
+.warning p {
+    font-size: x-large;
+}
+
+.warning img {
 }

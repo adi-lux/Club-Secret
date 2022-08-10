@@ -6,47 +6,49 @@ block header
       i Club Secret
     if user
       nav
-        a(href='/') Home
+        a(href='/' class='current') Home
         if !user.membership
           a(href='/membership') Membership
         a(href='/sign-out') Sign Out!
     else
       nav
-        a(href='/') Home
+        a(href='/' class='current') Home
         a(href='/sign-in') Sign in
         a(href='/sign-up') Sign up!
 
 block content
   if user
-    a(href='/messages')
+    a(class='post-button' href='/messages')
       button Post something!
 
     if !user.membership && !user.admin
-      p Welcome #{user.firstName} #{user.lastName}, You are logged on.
+      p(class='intro-text') Welcome, #{user.firstName} #{user.lastName}.
       section(class='message-board')
         div(class='message')
         each message in messageList
-            b= message.title
-            p= message.content
+            b(class='message-title')= message.title
+            p(class='message-content')= message.content
     else
-      p Welcome, member #{user.firstName} #{user.lastName}, you are logged on.
+      p(class='intro-text') Welcome, #{user.firstName} #{user.lastName}.
       section(class='message-board')
         each message in messageList
           div(class='message')
-            b= message.title
-            p= message.content
-            p= message.creator.userName
-            i= message.timestamp
-            if message.creator.userName === user.userName
-              a(href=message.url) Edit
-            if message.creator.userName === user.userName || user.admin
-              form(action=`delete${message.url}` method='POST')
-                  input(type='submit' value='delete')
+            b(class='message-title')= message.title
+            p(class='message-content')= message.content
+            p(class='message-poster')= message.creator.userName
+            i= message.date
+            div(class='message-buttons')
+              if message.creator.userName === user.userName
+                form(action=`${message.url}` method='GET')
+                  input(class='message-edit' type='submit' value='')
+              if message.creator.userName === user.userName || user.admin
+                form(action=`delete${message.url}` method='POST')
+                    input(class='message-delete' type='submit' value='')
     br
   else
-    p Sign up now!!
+    p(class='intro-text') Sign up now!!
     section(class='message-board')
       each message in messageList
         div(class='message')
-          b= message.title
-          p= message.content
+          b(class='message-title')= message.title
+          p(class='message-content')= message.content

@@ -1,10 +1,21 @@
 extends layout
 
+block header
+    header
+        a(href='/')
+            h1
+                i Club Secret
+        nav
+            a(href='/') Home
+            a(href='/sign-in' class='current') Sign in
+            a(href='/sign-up') Sign up!
+
 block content
-    p Sign in
-    form(method='POST' autocomplete='current-password'  action='/sign-in')
-        label(for='username') Username
-        input(placeholder='bob.jones@gmail.com' name='username' id='username')
-        label(for='password') Password
-        input(placeholder='bobjones3' name='password' id='password' type='password')
-        input(class='submit' type='submit' value='Sign in')
+    div(class='sign-in')
+        p(class='sign-in-statement') Sign in
+        form(class='sign-in-form' method='POST' autocomplete='current-password'  action='/sign-in')
+            label( for='username') Username:
+            input(class='sign-in-input' placeholder='bob.jones@gmail.com' name='username' id='username')
+            label(for='password') Password:
+            input( class='sign-in-input' placeholder='bobjones3' name='password' id='password' type='password')
+            input(class='submit sign-in-button' type='submit' value='Sign in')
