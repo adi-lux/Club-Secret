@@ -1,10 +1,11 @@
 extends layout
 
 block content
-    p Update your Message
-    form(method='POST' action=url)
-        label(for='title') Title
-        input(value=title name='title' id='title' minlength=1)
-        label(for='content') Content
-        textarea(name='content' id='content' minlength=1)=content
-        input(class='submit' type='submit' value='Post')
+    div(class='full-thing')
+        p(class='full-title') Update your Message
+        form(class='full-form' method='POST' action=url)
+            label(for='title') Title
+            input(value=title name='title' id='title' minlength=1)
+            label(for='content') Content
+            textarea(name='content' id='content' minlength=1)=content
+            input(class='submit full-button' type='submit' value='Post')

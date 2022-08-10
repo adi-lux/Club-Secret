@@ -179,12 +179,12 @@ nav {
 }
 
 
-.sign-in-form, .sign-in-statement, .sign-up-form, .sign-up p, .membership-form, .membership-statement {
+.sign-in-form, .sign-in-statement, .sign-up-form, .sign-up p, .membership-form, .membership-statement, .full-title, .full-form {
     color: #F4F3EE;
     margin: 50px;
     background-color: #501e81;
 }
-.sign-in-statement, .sign-up p, .membership-statement {
+.sign-in-statement, .sign-up p, .membership-statement, .full-title {
     font-size: x-large;
     font-weight: bolder;
     max-width: 600px;
@@ -197,12 +197,12 @@ nav {
     border-top-right-radius: 10px;
 }
 
-.sign-in, .sign-up, .membership {
+.sign-in, .sign-up, .membership, .full-thing {
     display: grid;
     width: 100vw;
     justify-content: center;
 }
-.sign-in-form, .sign-up-form, .membership-form {
+.sign-in-form, .sign-up-form, .membership-form, .full-form {
     padding: 0 20px 20px;
     margin-top: 0;
     display: grid;
@@ -218,20 +218,23 @@ nav {
 }
 
 
-.sign-in-button, .sign-up-button, .membership-button{
+.sign-in-button, .sign-up-button, .membership-button, .full-button{
     border: none;
     background-color: #F4F3EE;
     border-radius: 50px;
     align-self: center;
 }
-.sign-in-button:hover, .sign-up-button:hover, .membership-button:hover {
+.sign-in-button:hover, .sign-up-button:hover, .membership-button:hover, .full-button:hover {
     background-color: gainsboro;
 }
 
-.sign-in-button:active, .sign-up-button:active, .membership-button:hover {
+.sign-in-button:active, .sign-up-button:active, .membership-button:hover, .full-button:hover {
     box-shadow: 0 0 2px mediumpurple;
 }
 
+.full-title, .full-form {
+    width: 90vw;
+}
 .warning {
     color: #F4F3EE;
     font-size: xxx-large;
@@ -240,6 +243,9 @@ nav {
     width: 100vw;
 }
 
+textarea {
+    height: 40vh;
+}
 .warning a {
     display: block;
     place-self: center;
