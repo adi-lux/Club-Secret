@@ -73,8 +73,8 @@ const getMessagesForm = (req, res) => {
 }
 
 const postMessagesForm = [
-    body('title').trim().escape(),
-    body('content').trim().escape(),
+    body('title').trim(),
+    body('content').trim(),
     async (req, res, next) => {
         try {
             const result = validationResult(req)
