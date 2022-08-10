@@ -1,10 +1,9 @@
 extends layout
 
 block content
-    p Sign in
-    form(method='POST' action='/membership')
-        label(for='passcode') Passcode
-        input(name='passcode' id='passcode' type='password')
-        input(type='submit' value='Apply')
-    br
-    a(href='/') Home
+    div( class='membership')
+        p(class='membership-statement') Apply
+        form(class='membership-form' method='POST' action='/membership')
+            label(class='passcode-label' for='passcode') Passcode:
+            input(class='membership-passcode' name='passcode' id='passcode' type='password')
+            input(class='membership-button' type='submit' value='Apply')

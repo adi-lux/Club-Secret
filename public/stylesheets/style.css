@@ -179,12 +179,12 @@ nav {
 }
 
 
-.sign-in-form, .sign-in-statement, .sign-up-form, .sign-up p {
+.sign-in-form, .sign-in-statement, .sign-up-form, .sign-up p, .membership-form, .membership-statement {
     color: #F4F3EE;
     margin: 50px;
     background-color: #501e81;
 }
-.sign-in-statement, .sign-up p {
+.sign-in-statement, .sign-up p, .membership-statement {
     font-size: x-large;
     font-weight: bolder;
     max-width: 600px;
@@ -197,12 +197,12 @@ nav {
     border-top-right-radius: 10px;
 }
 
-.sign-in, .sign-up {
+.sign-in, .sign-up, .membership {
     display: grid;
     width: 100vw;
     justify-content: center;
 }
-.sign-in-form, .sign-up-form {
+.sign-in-form, .sign-up-form, .membership-form {
     padding: 0 20px 20px;
     margin-top: 0;
     display: grid;
@@ -218,17 +218,17 @@ nav {
 }
 
 
-.sign-in-button, .sign-up-button {
+.sign-in-button, .sign-up-button, .membership-button{
     border: none;
     background-color: #F4F3EE;
     border-radius: 50px;
     align-self: center;
 }
-.sign-in-button:hover, .sign-up-button:hover {
+.sign-in-button:hover, .sign-up-button:hover, .membership-button:hover {
     background-color: gainsboro;
 }
 
-.sign-in-button:active, .sign-up-button:active {
+.sign-in-button:active, .sign-up-button:active, .membership-button:hover {
     box-shadow: 0 0 2px mediumpurple;
 }
 
@@ -253,4 +253,14 @@ nav {
 }
 
 .warning img {
+}
+
+.passcode-label {
+    grid-column: 1/2;
+}
+.membership-passcode {
+    grid-column: 2/3;
+}
+.membership-button {
+    grid-column: 1/3;
 }
